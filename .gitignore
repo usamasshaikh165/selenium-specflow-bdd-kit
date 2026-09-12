@@ -1,0 +1,31 @@
+# Build output
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.idea/
+*.DotSettings.user
+
+# SpecFlow generated code-behind (regenerated on build)
+*.feature.cs
+
+# Test output
+TestResults/
+Reports/
+*.trx
+*.log
+
+# Secrets: never commit these
+VansahConfig.json
+!VansahConfig.example.json
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+
+# Claude Code local permission cache
+.claude/settings.local.json

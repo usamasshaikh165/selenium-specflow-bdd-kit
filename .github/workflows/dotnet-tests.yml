@@ -1,0 +1,44 @@
+name: SpecFlow Tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    timeout-minutes: 45
+    runs-on: ubuntu-latest   # ships with Google Chrome; Selenium Manager fetches a matching driver
+    env:
+      CI: "true"
+      HEADLESS: "1"
+      BASE_URL: ${{ secrets.BASE_URL }}
+      DEFAULT_USER_EMAIL: ${{ secrets.DEFAULT_USER_EMAIL }}
+      DEFAULT_USER_PASSWORD: ${{ secrets.DEFAULT_USER_PASSWORD }}
+      LOCKED_USER_EMAIL: ${{ secrets.LOCKED_USER_EMAIL }}
+      LOCKED_USER_PASSWORD: ${{ secrets.LOCKED_USER_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore SeleniumBddKit.sln
+
+      - name: Build
+        run: dotnet build SeleniumBddKit.sln --configuration Release --no-restore
+
+      - name: Run smoke suite
+        run: dotnet test tests/SampleTests/SampleTests.csproj --configuration Release --no-build --filter "TestCategory=smokeBDD" --logger "trx;LogFileName=results.trx"
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: test-results
+          path: |
+            tests/SampleTests/TestResults/
+            tests/SampleTests/bin/Release/net8.0/Reports/
+          retention-days: 30

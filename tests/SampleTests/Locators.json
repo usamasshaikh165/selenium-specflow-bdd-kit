@@ -1,0 +1,16 @@
+{
+  "LoginUsername":      { "ControlType": "Textbox", "IdentifierType": "Id",          "Identifier": "user-name" },
+  "LoginPassword":      { "ControlType": "Textbox", "IdentifierType": "Id",          "Identifier": "password" },
+  "LoginButton":        { "ControlType": "Button",  "IdentifierType": "Id",          "Identifier": "login-button" },
+  "LoginError":         { "ControlType": "Label",   "IdentifierType": "CssSelector", "Identifier": "[data-test='error']" },
+
+  "ProductsTitle":      { "ControlType": "Label",   "IdentifierType": "CssSelector", "Identifier": ".title" },
+  "ProductList":        { "ControlType": "Label",   "IdentifierType": "CssSelector", "Identifier": ".inventory_list" },
+  "CartBadge":          { "ControlType": "Label",   "IdentifierType": "CssSelector", "Identifier": ".shopping_cart_badge" },
+  "CartLink":           { "ControlType": "Button",  "IdentifierType": "CssSelector", "Identifier": ".shopping_cart_link" },
+  "CartItem":           { "ControlType": "Label",   "IdentifierType": "CssSelector", "Identifier": ".cart_item" },
+
+  "AddToCartButton":    { "ControlType": "Button",  "IdentifierType": "XPath", "Identifier": "//div[contains(@class,'inventory_item')][.//div[contains(@class,'inventory_item_name') and normalize-space()='{0}']]//button[normalize-space()='Add to cart']" },
+  "RemoveButton":       { "ControlType": "Button",  "IdentifierType": "XPath", "Identifier": "//div[contains(@class,'inventory_item')][.//div[contains(@class,'inventory_item_name') and normalize-space()='{0}']]//button[normalize-space()='Remove']" },
+  "CartItemByName":     { "ControlType": "Label",   "IdentifierType": "XPath", "Identifier": "//div[contains(@class,'cart_item')][.//div[contains(@class,'inventory_item_name') and normalize-space()='{0}']]" }
+}
